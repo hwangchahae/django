@@ -11,5 +11,6 @@ from .models import Question, Answer
 # admin.site.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     # list_display = ('subject', 'created_at', 'updated_at') #관리자 페이지에서 보여줄 필드설정
-    search_fields = ['subject']
+    search_fields = ['subject'] # 검색 기능을 위한 필드 설정
+    
 admin.site.register(Question, QuestionAdmin) # Question모델과 QuestionAdmin을 연결

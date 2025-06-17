@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Question, Answer
 
@@ -9,5 +9,6 @@ def index(request):
 
 
 def detail(request, question_id):
-    question = Question.objects.get(id=question_id)  # 질문 객체 가져오기  
+    # question = Question.objects.get(id=question_id)  # 질문 객체 가져오기  
+    question = get_object_or_404(Question, id=question_id)  # 질문 객체 가져오기, 없으면 404 에러 반환
     return render(request, 'board/detail.html', {'question': question})
