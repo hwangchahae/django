@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Question, Answer
 
@@ -12,3 +12,10 @@ def detail(request, question_id):
     # question = Question.objects.get(id=question_id)  # 질문 객체 가져오기  
     question = get_object_or_404(Question, id=question_id)  # 질문 객체 가져오기, 없으면 404 에러 반환
     return render(request, 'board/detail.html', {'question': question})
+
+
+def create_answer(request, question_id):
+    question = get_object_or_404(Question, id=question_id)  # 질문 객체 가져오기
+    Answer(question=question, 
+           content=request.POST.get['content']).save()  # POST 요청에서 'content' 필드의 값 답변 저장
+    return redirect('board:question_detail', question_id=question.id)  # 질문 상세 페이지로 리다이렉트
