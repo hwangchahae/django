@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Question(models.Model):
-    sudject = models.CharField(max_length=200) # 질문 제목
+    subject = models.CharField(max_length=200) # 질문 제목
     content = models.TextField() #질문 내용
     created_at = models.DateTimeField(auto_now_add=True) #생성시간
     updated_at = models.DateTimeField(auto_now=True) # 수정시간
